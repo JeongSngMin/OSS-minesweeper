@@ -181,3 +181,23 @@ class Board:
             for cell in self.cells:
                 if not cell.state.is_revealed and not cell.state.is_mine:
                     cell.state.is_revealed = True
+                    
+    def hint_reveal(self) -> None:
+        """Reveal a random safe unrevealed cell."""
+        # 게임이 시작되지 않았거나 게임 오버/승리 상태면 무시
+        if not self._mines_placed or self.game_over or self.win:
+            return
+
+        # 지뢰가 아니고 아직 공개되지 않은 칸들 찾기
+        safe_unrevealed = [
+            cell for cell in self.cells
+            if not cell.state.is_mine and not cell.state.is_revealed and not cell.state.is_flagged
+        ]
+
+        # 공개할 칸이 없으면 무시
+        if not safe_unrevealed:
+            return
+
+        # 랜덤으로 선택해서 reveal
+        hint_cell = random.choice(safe_unrevealed)
+        self.reveal(hint_cell.col, hint_cell.row)
