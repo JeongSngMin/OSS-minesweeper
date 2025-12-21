@@ -31,6 +31,7 @@ class Renderer:
         self.font = pygame.font.Font(config.font_name, config.font_size)
         self.header_font = pygame.font.Font(config.font_name, config.header_font_size)
         self.result_font = pygame.font.Font(config.font_name, config.result_font_size)
+        self.result_sub_font = pygame.font.Font(config.font_name, config.result_font_size // 2)
 
     def cell_rect(self, col: int, row: int) -> Rect:
         """Return the rectangle in pixels for the given grid cell."""
@@ -128,9 +129,19 @@ class Renderer:
         overlay = pygame.Surface((config.width, config.height), pygame.SRCALPHA)
         overlay.fill((0, 0, 0, config.result_overlay_alpha))
         self.screen.blit(overlay, (0, 0))
-        label = self.result_font.render(text, True, config.color_result)
-        rect = label.get_rect(center=(config.width // 2, config.height // 2))
-        self.screen.blit(label, rect)
+
+        # 멀티라인 텍스트 처리 (GAME CLEAR와 Best Time을 분리)
+        lines = text.split('\n')
+        y_offset = config.height // 2 - (len(lines) * 20)  # 여러 줄을 중앙에 배치
+
+        for i, line in enumerate(lines):
+            if i == 0:  # "GAME CLEAR" 또는 "GAME OVER"
+                label = self.result_font.render(line, True, config.color_result)
+            else:  # "Best Time: MM:SS"
+                label = self.result_sub_font.render(line, True, config.color_result)
+
+            rect = label.get_rect(center=(config.width // 2, y_offset + i * 40))
+            self.screen.blit(label, rect)
 
 
 class InputController:
@@ -216,6 +227,7 @@ class Game:
         self.started = False
         self.start_ticks_ms = 0
         self.end_ticks_ms = 0
+        self.best_time_ms = float('inf')
 
     def set_difficulty(self, level: str) -> None:
         """난이도 설정 및 보드 재생성"""
@@ -280,7 +292,10 @@ class Game:
         if self.board.game_over:
             return "GAME OVER"
         if self.board.win:
-            return "GAME CLEAR"
+            result = "GAME CLEAR"
+            if self.best_time_ms != float('inf'):
+                result += f"\nBest Time: {self._format_time(int(self.best_time_ms))}"
+            return result
         return None
 
     def draw(self):
@@ -323,6 +338,11 @@ class Game:
                 self.input.handle_mouse(event.pos, event.button)
         if (self.board.game_over or self.board.win) and self.started and not self.end_ticks_ms:
             self.end_ticks_ms = pygame.time.get_ticks()
+            # 게임 클리어 시 하이 스코어 업데이트
+            if self.board.win:
+                elapsed_time = self._elapsed_ms()
+                if elapsed_time < self.best_time_ms:
+                    self.best_time_ms = elapsed_time
         self.draw()
         self.clock.tick(config.fps)
         return True
