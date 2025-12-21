@@ -22,13 +22,6 @@ cols = 16
 rows = 16
 num_mines = 40
 
-# Difficulty multipliers
-difficulty_multipliers = {
-    "easy": 0.5,    # 하
-    "medium": 1.0,  # 중
-    "hard": 1.5     # 상
-}
-
 # Cell size and margins
 cell_size = 32
 margin_left = 20
