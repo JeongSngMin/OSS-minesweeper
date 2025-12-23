@@ -282,10 +282,10 @@ class Game:
 
     def _format_time(self, ms: int) -> str:
         """Format milliseconds as mm:ss.s string."""
-        total_seconds = ms // 1000
-        minutes = int(total_seconds) // 60
+        total_seconds = ms / 1000.0
+        minutes = int(total_seconds // 60) // 60
         seconds = total_seconds % 60
-        return f"{minutes:02d}:{seconds:05.1f}"
+        return f"{minutes:02d}:{seconds:04.1f}"
 
     def _result_text(self) -> str | None:
         """Return result label to display, or None if game continues."""
@@ -330,6 +330,8 @@ class Game:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_r:
                     self.reset()
+                elif event.key == pygame.K_h:
+                    self.board.hint_reveal()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 # 난이도 버튼 클릭 체크 (게임 시작 전에만)
                 if not self.started and self.difficulty_buttons:
