@@ -46,6 +46,7 @@
 
 - 프로그램 시작 시 하이스코어 기능 초기화
 - 클리어 조건 충족 시 하이스코어 기록 및 업데이트하도록 수정
+- 스코어 = 걸린 시간 (빠를수록 좋음)
 <img width="703" height="798" alt="image" src="https://github.com/user-attachments/assets/5c34f98b-cd29-40f3-8d1c-2c2dcf87f30f" />
 
 ---
