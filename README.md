@@ -9,8 +9,7 @@
 ## 📌 Issue#1. 숫자 색 표기 기능
 
 - 숫자마다 색을 다르게 표현한다.
-
-
+  <img width="706" height="799" alt="image" src="https://github.com/user-attachments/assets/269be775-1874-488b-bc5d-6a0cbb6b3f1f" />
 
 --- 
 
@@ -20,7 +19,14 @@
 - 시작 후에는 변경이 불가능하다.
 - 난이도 중을 기준으로 크기 및 개수 상은 1.5배, 하는 0.5배 적용
 
+- 난이도 하
+<img width="380" height="475" alt="image" src="https://github.com/user-attachments/assets/3c6ac011-5ae1-4cb7-9e4d-4595f1e77fc4" />
 
+- 난이도 중
+<img width="696" height="790" alt="image" src="https://github.com/user-attachments/assets/f219a5ca-70fb-4a9a-ac34-7ce1196fc6c1" />
+
+- 난이도 상
+<img width="1000" height="993" alt="image" src="https://github.com/user-attachments/assets/320406af-5825-48a1-bc3c-87708be30cda" />
 
 ---
 
