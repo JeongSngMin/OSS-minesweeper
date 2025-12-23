@@ -34,12 +34,19 @@
 
 - 키보드의 'h'키를 누르면 지뢰가 없는 칸 중 랜덤으로 한 칸을 클릭하여 보여준다.
 
+- 힌트 사용 전
+<img width="697" height="791" alt="image" src="https://github.com/user-attachments/assets/7003d1e9-4c32-4910-a2ec-3a186af95b22" />
+
+- 힌트 사용 후 (5번 사용)
+<img width="702" height="792" alt="image" src="https://github.com/user-attachments/assets/0a19d4d3-ca26-414b-b5cc-e6571563ae14" />
+
 ---
 
 ## 📌 Issue#4. 하이 스코어 저장 및 표출 기능
 
 - 프로그램 시작 시 하이스코어 기능 초기화
 - 클리어 조건 충족 시 하이스코어 기록 및 업데이트하도록 수정
+<img width="703" height="798" alt="image" src="https://github.com/user-attachments/assets/5c34f98b-cd29-40f3-8d1c-2c2dcf87f30f" />
 
 ---
 
@@ -47,6 +54,7 @@
 
 - 시간을 소수점 첫째자리까지 표시
 - 기존 초단위 -> 초단위 + 소수점 첫째자리
+<img width="703" height="798" alt="image" src="https://github.com/user-attachments/assets/f9dc9934-f724-4b13-9819-5b0515c6dadd" />
 
 ---
 
